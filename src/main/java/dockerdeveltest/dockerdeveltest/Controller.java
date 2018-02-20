@@ -38,7 +38,7 @@ public class Controller {
 	DbxRequestConfig config = new DbxRequestConfig("JavaTutorial/1.0");
 	DbxSessionStore csrfTokenStore;
 	DbxWebAuth webAuth;
-	String redirectUri = "https://localhost:8080/filelist";
+	String redirectUri = "https://localhost:8080/graph.html";
 	String accessToken;
 
 	@RequestMapping("/greeting")
