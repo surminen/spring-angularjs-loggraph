@@ -2,13 +2,14 @@ package dockerdeveltest.dockerdeveltest;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -65,7 +66,7 @@ public class Controller {
 	@RequestMapping("/filelist")
 	public FileList filelist(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("code") String code) throws IOException, ListFolderErrorException, DbxException {
-		
+
 		DbxAuthFinish authFinish = null;
 
 		if (accessToken == null) {
@@ -107,8 +108,9 @@ public class Controller {
 		DbxClientV2 client = new DbxClientV2(config, accessToken);
 		ListFolderResult listing = client.files().listFolderBuilder("/Life Log").start();
 
-		List<String> dates = new ArrayList<>();
-		List<String> titles = new ArrayList<>();
+		List<Map<String, String>> fileList = new ArrayList<Map<String, String>>();
+		// List<String> dates = new ArrayList<>();
+		// List<String> titles = new ArrayList<>();
 		for (Metadata item : listing.getEntries()) {
 			if (item.getName().endsWith(".gpx")) {
 				// String date = item.getName().split("\\xA7")[0];
@@ -119,17 +121,19 @@ public class Controller {
 				date2 += date.substring(4, 6) + "-";
 				date2 += date.substring(6, 8);
 
-				dates.add(date2);
-				titles.add(title);
-
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("date", date2);
+				map.put("title", title);
+				fileList.add(map);
+				
 				// Also get file contents here
 			} else {
 				// Get coodinates out of the gpx file
 			}
 		}
-		
+
 		// return the template to display;
-		return new FileList(dates, titles);
+		return new FileList(fileList);
 	}
 
 }

@@ -1,22 +1,17 @@
 package dockerdeveltest.dockerdeveltest;
 
 import java.util.List;
+import java.util.Map;
 
 public class FileList {
 
-	private final List<String> dates;
-	private final List<String> names;
+	private final List<Map<String, String>> data;
 
-	public FileList(List<String> _dates, List<String> _names) {
-		this.dates = _dates;
-		this.names = _names;
+	public FileList(List<Map<String, String>> _data) {
+		this.data = _data;
 	}
 
-	public List<String> getDates() {
-		return dates;
-	}
-
-	public List<String> getNames() {
-		return names;
+	public List<Map<String, String>> getData() {
+		return data;
 	}
 }

@@ -2,18 +2,22 @@
 <html ng-app="demo">
 <head>
 	<title>LogGraph</title>
+	
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/normalize.css" />
+	
 </head>
 
 <body>
 
 	<div ng-controller="Graph">
 	
-		<p>Dates: {{filelist.dates}}</p>
-		<p>Titles: {{filelist.names}}</p>
+		<p>Dates: {{filelist.data}}</p>
 
-		<div ng-repeat="title in filelist.names track by $index">
-    		Title: {{title}}, 
-    		Date: {{filelist.dates[$index]}}
+		<div ng-repeat="data in filelist.data track by $index">
+    		Title: {{data.title}}, 
+    		Date: {{data.date}}
 		</div>
 	
 		<button ng-click="filter('foo')">foo</button>
@@ -26,8 +30,70 @@
 	</div>
 
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+	<section class="cd-horizontal-timeline">
+		<div class="timeline">
+			<div class="events-wrapper">
+				<div class="events">
+					<ol>
+						<li><a href="#0" data-date="16/01/2014" class="selected">16
+								Jan</a></li>
+						<li><a href="#0" data-date="28/02/2014">28 Feb</a></li>
+						<li><a href="#0" data-date="20/04/2014">20 Mar</a></li>
+					</ol>
+
+					<span class="filling-line" aria-hidden="true"></span>
+				</div>
+				<!-- .events -->
+			</div>
+			<!-- .events-wrapper -->
+
+			<ul class="cd-timeline-navigation">
+				<li><a href="#0" class="prev inactive">Prev</a></li>
+				<li><a href="#0" class="next">Next</a></li>
+			</ul>
+			<!-- .cd-timeline-navigation -->
+		</div>
+		<!-- .timeline -->
+
+		<div class="events-content">
+			<ol>
+				<li class="selected" data-date="16/01/2014">
+					<h2>Horizontal Timeline</h2> <em>x January 16th, 2014</em>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Illum praesentium officia, fugit recusandae ipsa, quia velit nulla
+						adipisci? Consequuntur aspernatur at, eaque hic repellendus sit
+						dicta consequatur quae, ut harum ipsam molestias maxime non nisi
+						reiciendis eligendi! Doloremque quia pariatur harum ea amet
+						quibusdam quisquam, quae, temporibus dolores porro doloribus.</p>
+				</li>
+
+				<li data-date="28/02/2014">
+					<h2>Event title here</h2> <em>February 28th, 2014</em>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Illum praesentium officia, fugit recusandae ipsa, quia velit nulla
+						adipisci? Consequuntur aspernatur at, eaque hic repellendus sit
+						dicta consequatur quae, ut harum ipsam molestias maxime non nisi
+						reiciendis eligendi! Doloremque quia pariatur harum ea amet
+						quibusdam quisquam, quae, temporibus dolores porro doloribus.</p>
+				</li>
+
+				<li data-date="20/04/2014">
+					<h2>Event title here</h2> <em>March 20th, 2014</em>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+						Illum praesentium officia, fugit recusandae ipsa, quia velit nulla
+						adipisci? Consequuntur aspernatur at, eaque hic repellendus sit
+						dicta consequatur quae, ut harum ipsam molestias maxime non nisi
+						reiciendis eligendi! Doloremque quia pariatur harum ea amet
+						quibusdam quisquam, quae, temporibus dolores porro doloribus.</p>
+				</li>
+			</ol>
+		</div>
+		<!-- .events-content -->
+	</section>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 	<script src="js/controller.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>
